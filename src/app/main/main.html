@@ -18,21 +18,21 @@
   </ul>
   <div ng-if="bed.name == 'Rectangle'">
     <label for="">Length (Feet):
-      <input type="text" class="form-control" ng-change="bed.calculate()" ng-model="bed.length">
+      <input type="number" class="form-control" ng-change="bed.calculate()" ng-model="bed.length">
     </label>
     <label for="">Width (Feet):
-      <input type="text" class="form-control" ng-change="bed.calculate()" ng-model="bed.width">
+      <input type="number" class="form-control" ng-change="bed.calculate()" ng-model="bed.width">
     </label>
     <label for="">Depth (Inches):
-      <input type="text" class="form-control" ng-change="bed.calculate()" ng-model="bed.depth" ng-value="product.recommendedDepth">
+      <input type="number" class="form-control" ng-change="bed.calculate()" ng-model="bed.depth" ng-value="product.recommendedDepth">
     </label>
   </div>
   <div ng-if="bed.name == 'Circle' || bed.name == 'Semi-Circle'">
     <label for="">Diameter (Feet):
-      <input type="text" class="form-control" ng-change="bed.calculate()" ng-model="bed.diameter">
+      <input type="number" class="form-control" ng-change="bed.calculate()" ng-model="bed.diameter">
     </label>
     <label for="">Depth (Inches):
-      <input type="text" class="form-control" ng-change="bed.calculate()" ng-model="bed.depth" ng-value="product.recommendedDepth">
+      <input type="number" class="form-control" ng-change="bed.calculate()" ng-model="bed.depth" ng-value="product.recommendedDepth">
     </label>
   </div>
   <div>
