@@ -1,0 +1,43 @@
+<section ng-if="!bed.name">
+  <h2>Choose your space.</h2>
+  <ul>
+    <li ng-repeat="bed in beds">
+      <a href="" ng-click="setShape(bed)">{{bed.name}}</a>
+    </li>
+  </ul>
+</section>
+
+<section ng-if="bed.name">
+  <h2>Enter Stuff</h2>
+  <ul class="list-inline">
+    <li ng-repeat="pro in products">
+      <button class="btn btn-default btn-xs" ng-class="{'btn-primary':pro == product}" ng-click="setProduct(pro)">
+        {{pro.name}}
+      </button>
+    </li>
+  </ul>
+  <div ng-if="bed.name == 'Rectangle'">
+    <label for="">Length (Feet):
+      <input type="text" class="form-control" ng-change="bed.calculate()" ng-model="bed.length">
+    </label>
+    <label for="">Width (Feet):
+      <input type="text" class="form-control" ng-change="bed.calculate()" ng-model="bed.width">
+    </label>
+    <label for="">Depth (Inches):
+      <input type="text" class="form-control" ng-change="bed.calculate()" ng-model="bed.depth" ng-value="product.recommendedDepth">
+    </label>
+  </div>
+  <div ng-if="bed.name == 'Circle' || bed.name == 'Semi-Circle'">
+    <label for="">Diameter (Feet):
+      <input type="text" class="form-control" ng-change="bed.calculate()" ng-model="bed.diameter">
+    </label>
+    <label for="">Depth (Inches):
+      <input type="text" class="form-control" ng-change="bed.calculate()" ng-model="bed.depth" ng-value="product.recommendedDepth">
+    </label>
+  </div>
+  <div>
+    <p ng-if="bed.totalCubicYards">Total Cubic Yards: {{bed.totalCubicYards}}</p>
+    <p ng-if="product.price">Price Per Cubic Yard: {{product.price | currency}}</p>
+    <p ng-if="bed.totalPrice">Total Price: {{bed.totalPrice | currency}}</p>
+  </div>
+</section>
