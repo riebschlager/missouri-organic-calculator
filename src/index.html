@@ -1,113 +1,77 @@
-<!doctype html>
-<html>
-<head>
-    <meta charset="utf-8">
-    <title>missouriOrganicCalculator</title>
-    <meta name="description" content="">
-    <meta name="viewport" content="width=device-width">
-    <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
+<style type="text/css">
+    a.sqs-block-button-element--small.sqs-block-button-element { border: 2px solid transparent !important; }
+    a.sqs-block-button-element--small.sqs-block-button-element.chosen { background:transparent !important; color:rgb(31,31,31) !important; font-weight: bold !important; border: 2px solid rgb(31,31,31) !important; }
+    div.mo-form-row { clear: both; margin-bottom: 0.5em; }
+    div.mo-form-label { width: 15%; float: left; font-weight: bold; }
+    div.mo-form-input { width: 15%; float: left; }
+</style>
 
-    <!-- build:css({.tmp/serve,src}) styles/vendor.css -->
-    <link rel="stylesheet" href="app/vendor.css">
-    <!-- bower:css -->
-    <!-- run `gulp inject` to automatically populate bower styles dependencies -->
-    <!-- endbower -->
-    <!-- endbuild -->
-
-    <!-- build:css({.tmp/serve,src}) styles/app.css -->
-    <!-- inject:css -->
-    <!-- css files will be automatically insert here -->
-    <!-- endinject -->
-    <!-- endbuild -->
-</head>
-<body>
-    
-    <style type="text/css">
-        a.sqs-block-button-element--small.sqs-block-button-element { border: 2px solid transparent !important; }
-        a.sqs-block-button-element--small.sqs-block-button-element.chosen { background:transparent !important; color:rgb(31,31,31) !important; font-weight: bold !important; border: 2px solid rgb(31,31,31) !important; }
-        div.mo-form-row { clear: both; margin-bottom: 0.5em; }
-        div.mo-form-label { width: 15%; float: left; font-weight: bold; }
-        div.mo-form-input { width: 15%; float: left; }
-    </style>
-
-    <div class="container" ng-app="missouriOrganicCalculator" ng-controller="MainCtrl">
-        <section ng-if="!bed.name">
-            <h3>CHOOSE YOUR SPACE:</h3>
-            <div class="row sqs-row">
-                <div class="col sqs-col-3 span-3" ng-repeat="bed in beds">
-                    <div class="sqs-block button-block sqs-block-button">
-                        <div class="sqs-block-content">
-                            <div class="sqs-block-button-container--left">
-                                <a href="" ng-click="setShape(bed)" class="sqs-block-button-element--small sqs-block-button-element">{{bed.name}}</a>
-                            </div>
+<div class="container" ng-app="missouriOrganicCalculator" ng-controller="MainCtrl">
+    <section ng-if="!bed.name">
+        <h3 style="margin-bottom:1.5em;">CHOOSE YOUR SPACE:</h3>
+        <div class="row sqs-row">
+            <div class="col sqs-col-3 span-3" ng-repeat="bed in beds">
+                <div class="sqs-block button-block sqs-block-button">
+                    <div class="sqs-block-content">
+                        <div class="sqs-block-button-container--left">
+                            <a href="" ng-click="setShape(bed)" class="sqs-block-button-element--small sqs-block-button-element">{{bed.name}}</a>
                         </div>
                     </div>
                 </div>
             </div>
-        </section>
-        <section ng-if="bed.name">
-            <h3>CHOOSE A PRODUCT</h3>
-            <div class="row sqs-row">
-                <div class="col sqs-col-5 span-3" ng-repeat="pro in products">
-                    <div class="sqs-block button-block sqs-block-button">
-                        <div class="sqs-block-content">
-                            <div class="sqs-block-button-container--left">
-                                <a href="" ng-class="{'chosen':product == pro}" ng-click="setProduct(pro)" class="sqs-block-button-element--small sqs-block-button-element">{{pro.name}}</a>
-                            </div>
+        </div>
+    </section>
+    <section ng-if="bed.name">
+        <h3 style="margin-bottom:1.5em;">CHOOSE A PRODUCT</h3>
+        <div class="row sqs-row">
+            <div class="col sqs-col-5 span-3" ng-repeat="pro in products">
+                <div class="sqs-block button-block sqs-block-button">
+                    <div class="sqs-block-content">
+                        <div class="sqs-block-button-container--left">
+                            <a href="" ng-class="{'chosen':product == pro}" ng-click="setProduct(pro)" class="sqs-block-button-element--small sqs-block-button-element">{{pro.name}}</a>
                         </div>
                     </div>
                 </div>
             </div>
-            <hr style="margin-top:1em;margin-bottom:1em;">
-            <h3>BED DIMENSIONS</h3>
-            <div ng-if="bed.name == 'Rectangle'">
-                <div class="row sqs-row mo-form-row">
-                    <div class="mo-form-label">Length (Feet):</div>
-                    <div class="mo-form-input"><input type="number" class="form-control" ng-change="bed.calculate()" ng-model="bed.length"></div>
-                </div>
-                <div class="row sqs-row mo-form-row">
-                    <div class="mo-form-label">Width (Feet):</div>
-                    <div class="mo-form-input"><input type="number" class="form-control" ng-change="bed.calculate()" ng-model="bed.width"></div>
-                </div>
-                <div class="row sqs-row mo-form-row">
-                    <div class="mo-form-label">Depth (Inches):</div>
-                    <div class="mo-form-input"><input type="number" class="form-control" ng-change="bed.calculate()" ng-model="bed.depth"></div>
+        </div>
+        <hr style="margin-top:1em;margin-bottom:1em;width:100%;">
+        <h3 style="margin-bottom:1.5em;">BED DIMENSIONS</h3>
+        <div ng-if="bed.name == 'Rectangle'">
+            <div class="row sqs-row mo-form-row">
+                <div class="mo-form-label">Length (Feet):</div>
+                <div class="mo-form-input"><input type="number" class="form-control" ng-change="bed.calculate()" ng-model="bed.length"></div>
+            </div>
+            <div class="row sqs-row mo-form-row">
+                <div class="mo-form-label">Width (Feet):</div>
+                <div class="mo-form-input"><input type="number" class="form-control" ng-change="bed.calculate()" ng-model="bed.width"></div>
+            </div>
+            <div class="row sqs-row mo-form-row">
+                <div class="mo-form-label">Depth (Inches):</div>
+                <div class="mo-form-input"><input type="number" class="form-control" ng-change="bed.calculate()" ng-model="bed.depth"></div>
+            </div>
+        </div>
+        <div ng-if="bed.name == 'Circle' || bed.name == 'Semi-Circle'">
+            <div class="row sqs-row mo-form-row">
+                <div class="mo-form-label">Diameter (Feet):</div>
+                <div class="mo-form-input"><input type="number" class="form-control" ng-change="bed.calculate()" ng-model="bed.diameter"></div>
+            </div>
+            <div class="row sqs-row mo-form-row">
+                <div class="mo-form-label">Depth (Inches):</div>
+                <div class="mo-form-input"><input type="number" class="form-control" ng-change="bed.calculate()" ng-model="bed.depth"></div>
+            </div>
+        </div>
+        <hr style="margin-top:1em;margin-bottom:1em;width:100%">
+        <div>
+            <h3 ng-if="bed.totalCubicYards">TOTAL CUBIC YARDS: {{bed.totalCubicYards}}</h3>
+            <h3 ng-if="product.price">PRICE PER CUBIC YARD: {{product.price | currency}}</h3>
+            <h2 ng-if="bed.totalPrice">TOTAL PRICE: {{bed.totalPrice | currency}}</h2>
+        </div>
+        <div class="sqs-block button-block sqs-block-button">
+            <div class="sqs-block-content">
+                <div class="sqs-block-button-container--left">
+                    <a href="/quick-quote/" class="sqs-block-button-element--small sqs-block-button-element">Start Over</a>
                 </div>
             </div>
-            <div ng-if="bed.name == 'Circle' || bed.name == 'Semi-Circle'">
-                <div class="row sqs-row mo-form-row">
-                    <div class="mo-form-label">Diameter (Feet):</div>
-                    <div class="mo-form-input"><input type="number" class="form-control" ng-change="bed.calculate()" ng-model="bed.diameter"></div>
-                </div>
-                <div class="row sqs-row mo-form-row">
-                    <div class="mo-form-label">Depth (Inches):</div>
-                    <div class="mo-form-input"><input type="number" class="form-control" ng-change="bed.calculate()" ng-model="bed.depth"></div>
-                </div>
-            </div>
-            <hr style="margin-top:1em;margin-bottom:1em;">
-            <div>
-                <h3 ng-if="bed.totalCubicYards">TOTAL CUBIC YARDS: {{bed.totalCubicYards}}</h3>
-                <h3 ng-if="product.price">PRICE PER CUBIC YARD: {{product.price | currency}}</h3>
-                <h2 ng-if="bed.totalPrice">TOTAL PRICE: {{bed.totalPrice | currency}}</h2>
-            </div>
-        </section>
-    </div>
-
-    <!-- build:js(src) scripts/vendor.js -->
-    <!-- bower:js -->
-    <!-- run `gulp inject` to automatically populate bower script dependencies -->
-    <!-- endbower -->
-    <!-- endbuild -->
-
-    <!-- build:js({.tmp/serve,.tmp/partials,src}) scripts/app.js -->
-    <!-- inject:js -->
-    <!-- js files will be automatically insert here -->
-    <!-- endinject -->
-
-    <!-- inject:partials -->
-    <!-- angular templates will be automatically converted in js and inserted here -->
-    <!-- endinject -->
-    <!-- endbuild -->
-
-</body>
-</html>
+        </div>
+    </section>
+</div>
