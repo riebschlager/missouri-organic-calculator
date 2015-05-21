@@ -4,6 +4,10 @@
     div.mo-form-row { clear: both; margin-bottom: 0.5em; }
     div.mo-form-label { width: 15%; float: left; font-weight: bold; }
     div.mo-form-input { width: 15%; float: left; }
+    @media(max-width: 640px){
+        div.mo-form-label { width: 100%; }
+        div.mo-form-input { width: 100%; }
+    }
 </style>
 
 <div class="container" ng-app="missouriOrganicCalculator" ng-controller="MainCtrl">
